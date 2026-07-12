@@ -20,13 +20,13 @@ This will create `target/credit-simulator.jar` (fat JAR with dependencies).
 ### Interactive Mode
 
 ```bash
-./bin/credit_simulator
+./bin/credit-simulator
 ```
 
 ### File Input Mode
 
 ```bash
-./bin/credit_simulator file_input.txt
+./bin/credit-simulator file_input.txt
 ```
 
 ### Using Java Directly
@@ -41,6 +41,49 @@ java -jar target/credit-simulator.jar file_input.txt
 ```bash
 mvn test
 ```
+
+<br><br>
+
+## Build and Run via Docker
+
+### Build Docker using Docker Compose
+
+```bash
+docker-compose up -d
+```
+
+### Attach Docker to run loan menu
+
+```bash
+docker attach credit-simulator
+```
+
+### Interactive Mode
+
+```bash
+./bin/credit-simulator
+```
+
+### File Input Mode
+
+```bash
+./bin/credit-simulator file_input.txt
+```
+
+### Run using Java (Jar)
+
+```bash
+java -jar target/credit-simulator.jar
+```
+
+### Run docker again
+Docker will shut down when the program is finished using it
+```bash
+docker-compose start
+```
+
+<br><br>
+
 
 ## Features
 
