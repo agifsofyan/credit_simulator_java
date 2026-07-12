@@ -1,6 +1,7 @@
 package com.agif.credit.view;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import com.agif.credit.factory.VehicleFactory;
 import com.agif.credit.model.Loan;
@@ -89,9 +90,7 @@ public class ConsoleView {
         } catch (Exception ignore) {
         }
 
-        Vehicle vehicle =
-                VehicleFactory.createVehicle(
-                        vehicleType, vehicleCondition, vehicleYear);
+        Vehicle vehicle = VehicleFactory.createVehicle(vehicleType, vehicleCondition, vehicleYear);
 
         return new Loan(vehicle, totalLoanAmount, downPayment, loanTenure);
     }
@@ -144,6 +143,15 @@ public class ConsoleView {
                 System.out.print("Input tidak valid. Masukkan angka: ");
                 scanner.nextLine();
             }
+        }
+    }
+
+    public void displayErrors(List<String> errors) {
+        if (errors.isEmpty()) return;
+        
+        System.out.println();
+        for (String error : errors) {
+            System.out.println("[ERROR] " + error);
         }
     }
 }

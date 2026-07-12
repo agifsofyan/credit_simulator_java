@@ -22,6 +22,11 @@ public class LoanController {
     public void processLoan(Loan loan) {
         List<String> errors = validator.validate(loan);
 
+        if (!errors.isEmpty()) {
+            view.displayErrors(errors);
+            return;
+        }
+
         LoanResult result = calculationService.calculate(loan);
         view.displayResult(result);
     }
