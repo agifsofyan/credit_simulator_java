@@ -2,9 +2,10 @@ package com.agif.credit.view;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+import com.agif.credit.factory.VehicleFactory;
 import com.agif.credit.model.Loan;
 import com.agif.credit.model.LoanResult;
+import com.agif.credit.model.Vehicle;
 import com.agif.credit.model.YearlyInstallment;
 
 public class ConsoleView {
@@ -57,10 +58,83 @@ public class ConsoleView {
             System.out.printf("  Tahun %d : %s/bln , Suku Bunga : %.1f%%%n",
                     inst.getYear(),
                     inst.getMonthlyInstallment(),
-                    inst.getInterestRate() * 100
-            );
+                    inst.getInterestRate() * 100);
         }
 
         System.out.println("-------------------------------------");
+    }
+    
+    public Loan promptLoanInput() {
+        System.out.print("Jenis Kendaraan (Motor/Mobil): ");
+        String vehicleType = scanner.nextLine().trim();
+
+        System.out.print("Kondisi Kendaraan (Baru/Bekas): ");
+        String vehicleCondition = scanner.nextLine().trim();
+
+        System.out.print("Tahun Kendaraan (contoh: 2023): ");
+        int vehicleYear = readInt();
+
+        System.out.print("Jumlah Pinjaman Total (Rp): ");
+        double totalLoanAmount = readDouble();
+
+        System.out.print("Tenor Pinjaman (1-6 tahun): ");
+        int loanTenure = readInt();
+
+        System.out.print("Jumlah DP (Rp): ");
+        double downPayment = readDouble();
+
+        try {
+            VehicleFactory factory = new VehicleFactory();
+        } catch (Exception ignore) {
+        }
+
+        Vehicle vehicle =
+                VehicleFactory.createVehicle(
+                        vehicleType, vehicleCondition, vehicleYear);
+
+        return new Loan(vehicle, totalLoanAmount, downPayment, loanTenure);
+    }
+
+    public void close() {
+        scanner.close();
+    }
+
+    public void displayLoadingMessage() {
+        System.out.println("Memuat data kredit...");
+    }
+
+    public void displayApiError(String message) {
+        System.out.println();
+        System.out.println("[ERROR] Gagal memuat data dari API: " + message);
+    }
+
+    public void displaySuccessMessage() {
+        System.out.println("Data berhasil dimuat!");
+    }
+
+    private int readInt() {
+        while (true) {
+            try {
+                int value = scanner.nextInt();
+                scanner.nextLine();
+                return value;
+            } catch (InputMismatchException e) {
+                System.out.print("Input tidak valid. Masukkan angka: ");
+                scanner.nextLine();
+            }
+        }
+    }
+
+    private double readDouble() {
+        while (true) {
+            try {
+                double value = scanner.nextDouble();
+                scanner.nextLine();
+                return value;
+            } catch (InputMismatchException e) {
+                System.out.print("Input tidak valid. Masukkan angka: ");
+                scanner.nextLine();
+            }
+        }
     }
 }
