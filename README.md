@@ -42,6 +42,14 @@ java -jar target/credit-simulator.jar file_input.txt
 mvn test
 ```
 
+## Features
+
+1. **Interactive Console Mode** - Menu-driven input with looping
+2. **File Input Mode** - Read data from plain text file
+3. **API Integration** - Load existing calculation from Mocky.io
+4. **Input Validation** - All rules enforced (year, tenor, DP, loan amount)
+5. **Interest Rate Calculation** - Based on Excel formula (verified)
+
 ## Interest Rate Formula
 
 Base rates:
@@ -59,6 +67,12 @@ Example for Mobil (base 8%):
 - Year 4: 8.7%
 - Year 5: 9.2%
 - Year 6: 9.3%
+
+## Design Patterns
+
+- **Factory Pattern**: VehicleFactory for creating vehicles
+- **MVC Pattern**: Model-View-Controller separation
+- **Strategy Pattern**: Interest rate calculation strategy
 
 ## File Input Format
 
