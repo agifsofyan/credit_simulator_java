@@ -1,5 +1,6 @@
 package com.agif.credit.view;
 
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -74,7 +75,7 @@ public class ConsoleView {
         System.out.print("Kondisi Kendaraan (Baru/Bekas): ");
         String vehicleCondition = scanner.nextLine().trim();
 
-        System.out.print("Tahun Kendaraan (contoh: 2023): ");
+        System.out.printf("Tahun Kendaraan (contoh: %d): ", LocalDate.now().getYear());
         int vehicleYear = readInt();
 
         System.out.print("Jumlah Pinjaman Total (Rp): ");
