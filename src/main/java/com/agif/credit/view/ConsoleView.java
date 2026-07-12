@@ -46,8 +46,8 @@ public class ConsoleView {
 
         System.out.println();
         System.out.println("---------- HASIL SIMULASI ----------");
-        System.out.println("Jenis Kendaraan   : " + loan.getVehicle().getType());
-        System.out.println("Kondisi Kendaraan : " + loan.getVehicle().getCondition());
+        System.out.println("Jenis Kendaraan   : " + loan.getVehicle().getType().getLabel());
+        System.out.println("Kondisi Kendaraan : " + loan.getVehicle().getCondition().getLabel());
         System.out.println("Tahun Kendaraan   : " + loan.getVehicle().getYear());
         System.out.println("Pinjaman Total    : " + loan.getTotalLoanAmount());
         System.out.println("DP                : " + loan.getDownPayment());

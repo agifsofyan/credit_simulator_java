@@ -38,7 +38,7 @@ public class LoanValidator {
         if (loan.getDownPayment() < minDP) {
             errors.add(String.format(
                     "Jumlah DP untuk kendaraan %s harus minimal %.0f%% dari jumlah pinjaman total",
-                    getDisplayCondition(loan.getVehicle().getCondition()),
+                    loan.getVehicle().getCondition().getLabel(),
                     loan.getVehicle().getCondition().getMinimumDownPaymentPercentage() * 100
             ));
         }
@@ -52,16 +52,5 @@ public class LoanValidator {
         }
 
         return errors;
-    }
-
-    private String getDisplayCondition(VehicleCondition condition) {
-        switch (condition) {
-            case BARU:
-                return "Baru";
-            case BEKAS:
-                return "Bekas";
-            default:
-                return condition.name();
-        }
     }
 }
