@@ -48,8 +48,13 @@ public class Main {
                     processLoadExisting(controller, view, apiService);
                     break;
 
-                // default:
-                //     //
+                case 0:
+                    running = false;
+                    view.showGoodbye();
+                    break;
+
+                default:
+                    view.showInvalidChoice();
             }
         }
 

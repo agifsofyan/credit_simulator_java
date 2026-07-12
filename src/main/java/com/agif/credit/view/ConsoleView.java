@@ -27,6 +27,7 @@ public class ConsoleView {
         System.out.println("Pilih menu:");
         System.out.println("  1. Simulasi Kredit Baru");
         System.out.println("  2. Load Existing Calculation");
+        System.out.println("  0. Keluar");
         System.out.print("Pilihan Anda: ");
 
         try {
@@ -110,6 +111,14 @@ public class ConsoleView {
 
     public void displaySuccessMessage() {
         System.out.println("Data berhasil dimuat!");
+    }
+
+    public void showGoodbye() {
+        System.out.println("Terima kasih telah menggunakan Credit Simulator!");
+    }
+
+    public void showInvalidChoice() {
+        System.out.println("Pilihan tidak valid. Silakan coba lagi.");
     }
 
     private int readInt() {
