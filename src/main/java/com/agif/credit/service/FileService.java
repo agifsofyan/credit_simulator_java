@@ -1,7 +1,6 @@
 package com.agif.credit.service;
 
-import com.agif.credit.enums.VehicleCondition;
-import com.agif.credit.enums.VehicleType;
+import com.agif.credit.factory.VehicleFactory;
 import com.agif.credit.model.Loan;
 import com.agif.credit.model.Vehicle;
 import java.io.IOException;
@@ -32,10 +31,7 @@ public class FileService {
         int loanTenure = Integer.parseInt(lines.get(4).trim());
         double downPayment = Double.parseDouble(lines.get(5).trim());
 
-        VehicleType type = VehicleType.fromString(vehicleTypeStr);
-        VehicleCondition condition = VehicleCondition.fromString(vehicleConditionStr);
-        
-        Vehicle vehicle = new Vehicle(type, condition, vehicleYear);
+        Vehicle vehicle = VehicleFactory.createVehicle(vehicleTypeStr, vehicleConditionStr, vehicleYear);
 
         return new Loan(vehicle, totalLoanAmount, downPayment, loanTenure);
     }
