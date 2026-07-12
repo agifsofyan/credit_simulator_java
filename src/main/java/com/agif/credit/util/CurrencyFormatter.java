@@ -1,22 +1,27 @@
 package com.agif.credit.util;
 
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.Locale;
 
 public class CurrencyFormatter {
 
-    private static final DecimalFormat formatter;
+    private static final String localLanguage = "id";
+    private static final String localCountry = "ID";
 
-    static {
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
-        symbols.setGroupingSeparator('.');
-        symbols.setDecimalSeparator(',');
-        
-        formatter = new DecimalFormat("#.##0", symbols);
+    private static DecimalFormat setCurrency() {
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(new Locale(localLanguage, localCountry));
+        formatter.applyPattern("#,###");
+
+        return formatter;
     }
-
+    
+    /**
+     * Format double to Indonesia Currency
+     * @param amount
+     * @return
+     */
     public static String format(double amount) {
-        return "Rp. " + formatter.format(amount);
+        return "Rp " + setCurrency().format(amount);
     }
 }
