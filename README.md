@@ -68,6 +68,25 @@ Example for Mobil (base 8%):
 - Year 5: 9.2%
 - Year 6: 9.3%
 
+## Project Structure
+
+```
+src/
+├── main/java/com/agif/credit/
+│   ├── enums/         # VehicleType, VehicleCondition
+│   ├── model/         # Vehicle, Loan, YearlyInstallment, LoanResult
+│   ├── factory/       # VehicleFactory
+│   ├── service/       # InterestRateService, LoanCalculationService, FileService, ApiService
+│   ├── validator/     # LoanValidator
+│   ├── controller/    # LoanController (MVC)
+│   ├── view/          # ConsoleView
+│   ├── util/          # CurrencyFormatter
+│   └── Main.java
+└── test/java/com/agif/credit/
+    ├── service/       # InterestRateServiceTest, LoanCalculationServiceTest, FileServiceTest
+    └── validator/     # LoanValidatorTest
+```
+
 ## Design Patterns
 
 - **Factory Pattern**: VehicleFactory for creating vehicles
