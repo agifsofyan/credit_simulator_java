@@ -8,6 +8,7 @@ import com.agif.credit.model.Loan;
 import com.agif.credit.model.LoanResult;
 import com.agif.credit.model.Vehicle;
 import com.agif.credit.model.YearlyInstallment;
+import com.agif.credit.util.CurrencyFormatter;
 
 public class ConsoleView {
     private final Scanner scanner;
@@ -49,9 +50,9 @@ public class ConsoleView {
         System.out.println("Jenis Kendaraan   : " + loan.getVehicle().getType().getLabel());
         System.out.println("Kondisi Kendaraan : " + loan.getVehicle().getCondition().getLabel());
         System.out.println("Tahun Kendaraan   : " + loan.getVehicle().getYear());
-        System.out.println("Pinjaman Total    : " + loan.getTotalLoanAmount());
-        System.out.println("DP                : " + loan.getDownPayment());
-        System.out.println("Pokok Pinjaman    : " + loan.getPrincipalAmount());
+        System.out.println("Pinjaman Total    : " + CurrencyFormatter.format(loan.getTotalLoanAmount()));
+        System.out.println("DP                : " + CurrencyFormatter.format(loan.getDownPayment()));
+        System.out.println("Pokok Pinjaman    : " + CurrencyFormatter.format(loan.getPrincipalAmount()));
         System.out.println("Tenor             : " + loan.getLoanTenure() + " tahun");
         System.out.println();
         System.out.println("Cicilan Per Bulan Berdasarkan Tahun Berjalan:");
@@ -59,7 +60,7 @@ public class ConsoleView {
         for (YearlyInstallment inst : result.getYearlyInstallments()) {
             System.out.printf("  Tahun %d : %s/bln , Suku Bunga : %.1f%%%n",
                     inst.getYear(),
-                    inst.getMonthlyInstallment(),
+                    CurrencyFormatter.format(inst.getMonthlyInstallment()),
                     inst.getInterestRate() * 100);
         }
 
