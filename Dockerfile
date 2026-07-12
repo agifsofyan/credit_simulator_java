@@ -5,10 +5,11 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
-RUN groupadd -r appuser && useradd -r -g appuser -u 1000 appuser
+RUN groupadd -r appuser && useradd -r -g appuser appuser
 COPY --from=builder /app/target/credit-simulator.jar /app/credit-simulator.jar
-RUN mkdir -p /app/data && chown -R appuser:appuser /app
+COPY file_input.txt /app/file_input.txt
+RUN chown -R appuser:appuser /app
 USER appuser
 ENTRYPOINT ["java", "-jar", "/app/credit-simulator.jar"]
