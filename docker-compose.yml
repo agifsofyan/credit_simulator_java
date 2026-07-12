@@ -1,0 +1,11 @@
+services:
+  credit-simulator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: credit-simulator:latest
+    container_name: credit-simulator
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./file_input.txt:/app/file_input.txt:ro
